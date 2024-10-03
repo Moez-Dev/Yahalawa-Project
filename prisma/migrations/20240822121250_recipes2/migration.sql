@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Recipes" ALTER COLUMN "alias" DROP NOT NULL,
+ALTER COLUMN "description" DROP NOT NULL,
+ALTER COLUMN "rank" DROP NOT NULL;

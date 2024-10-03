@@ -1,0 +1,347 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  FREE
+  T_TELECOM
+}
+
+//User--------------------------------------------------------------//
+model User {
+  id            String       @id @default(uuid())
+  name          String?
+  email         String?      @unique
+  phone_number  Int?         @unique
+  emailVerified DateTime?
+  emailChecked  Boolean      @default(false)
+  password      String?      @db.Text
+  image         String?      @db.Text
+  role          Role         @default(FREE)
+  accounts      Account[]
+  sessions      Session[]
+  recipes       UserRecipe[]
+  likes         UserLike[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  lastLogin DateTime?
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+model UserRecipe {
+  id       Int     @id @default(autoincrement())
+  userId   String
+  recipeId Int
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe   Recipes @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+}
+
+model UserLike {
+  id       Int     @id @default(autoincrement())
+  userId   String
+  recipeId Int
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe   Recipes @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+}
+
+//Recipes-------------------------------------------------------------------------//
+model Recipes {
+  id                  Int     @id @default(autoincrement())
+  title               String
+  slug                String?
+  description         String? @db.Text
+  difficulty          String
+  nbr_serves          Int
+  preparation_time    Int
+  cooking_time        Int
+  total_time          Int
+  cooking_temperature Int
+  video_link          String? @db.Text
+  status              String
+  rank                Int?
+  seoDescription      String? @db.Text
+  seoTitle            String? @db.Text
+  id_intern           String? @db.Text
+  author              String?
+  note                String?
+  ingredient_title    String?
+  is_paying           String
+  videoPath           String?
+  imgPath             String?
+  likes               Int?
+  glucides            Int?
+  proteines           Int?
+  graisses            Int?
+  kcal                Int?
+  rubrique            String?
+
+  category      CategoryRecipesSelected[]
+  ingredients   IngredientsRecipe[]
+  relatedRecipe RelatedRecipe[]
+  steps         RecipeSteps[]
+  origine       OrigineRecipe[]
+  tags          TagsRecipe[]
+  ustensiles    UstensilesRecipe[]
+  userRecipes   UserRecipe[]
+  userLikes     UserLike[]
+
+  scheduledOn String?
+  scheduledAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+}
+
+model CategoryRecipesSelected {
+  id        Int      @id @default(autoincrement())
+  title     String?
+  Recipes   Recipes? @relation(fields: [recipesId], references: [id], onDelete: Cascade)
+  recipesId Int?
+}
+
+model RecipeSteps {
+  id          Int      @id @default(autoincrement())
+  title       String?
+  description String?  @db.Text
+  step        Int?
+  Recipes     Recipes? @relation(fields: [recipesId], references: [id], onDelete: Cascade)
+  recipesId   Int?
+}
+
+model IngredientsRecipe {
+  id         Int      @id @default(autoincrement())
+  ingredient String?
+  unite      String?
+  qte_cup    Int?
+  qte_gramme Int?
+  Recipes    Recipes? @relation(fields: [recipesId], references: [id], onDelete: Cascade)
+  recipesId  Int?
+}
+
+model RelatedRecipe {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  link      String?
+  Recipes   Recipes? @relation(fields: [recipesId], references: [id], onDelete: Cascade)
+  recipesId Int?
+}
+
+model TagsRecipe {
+  id        Int      @id @default(autoincrement())
+  title     String
+  Recipes   Recipes? @relation(fields: [recipesId], references: [id], onDelete: Cascade)
+  recipesId Int?
+}
+
+model OrigineRecipe {
+  id        Int      @id @default(autoincrement())
+  title     String
+  img       String
+  Recipes   Recipes? @relation(fields: [recipesId], references: [id], onDelete: Cascade)
+  recipesId Int?
+}
+
+model UstensilesRecipe {
+  id        Int      @id @default(autoincrement())
+  title     String?
+  Recipes   Recipes? @relation(fields: [recipesId], references: [id], onDelete: Cascade)
+  recipesId Int?
+}
+
+model Ingredients {
+  id    Int    @id @default(autoincrement())
+  title String
+  type  String
+}
+
+model Category {
+  id             Int     @id @default(autoincrement())
+  title          String
+  seoTitle       String?
+  description    String? @db.Text
+  seoDescription String? @db.Text
+  status         String
+}
+
+model Unit {
+  id    Int    @id @default(autoincrement())
+  title String
+}
+
+model Ustensiles {
+  id    Int    @id @default(autoincrement())
+  title String
+}
+
+model Tags {
+  id     Int    @id @default(autoincrement())
+  title  String
+  status String
+}
+
+model Origine {
+  id    Int    @id @default(autoincrement())
+  title String
+  img   String
+}
+
+// Tips-----------------------------------------------------------------//
+model Tips {
+  id             Int                    @id @default(autoincrement())
+  title          String
+  seoTitle       String?
+  description    String?                @db.Text
+  seoDescription String?
+  category       CategoryTipsSelected[]
+  userTips       UserTips[]
+  userTipsLike   UserTipsLike[]
+  slug           String?
+  author         String?
+  img            String?                @db.Text
+  video          String?                @db.Text
+  featured       Boolean?
+  status         String
+  is_paying      String
+  likes          Int?
+  note           String?
+  id_intern      String
+  video_link     String?                @db.Text
+  thumbnailName  String?
+  video_nature   Int?
+  rubrique       String?
+  scheduledOn    String?
+  scheduledAt    DateTime?
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime?              @updatedAt
+}
+
+model UserTips {
+  id     Int    @id @default(autoincrement())
+  userId String
+  tipId  Int
+  tips   Tips?  @relation(fields: [tipId], references: [id], onDelete: Cascade)
+}
+
+model UserTipsLike {
+  id     Int    @id @default(autoincrement())
+  userId String
+  tipId  Int
+  tips   Tips?  @relation(fields: [tipId], references: [id], onDelete: Cascade)
+}
+
+model CategoryTipsSelected {
+  id     Int    @id @default(autoincrement())
+  title  String
+  Tips   Tips?  @relation(fields: [tipsId], references: [id], onDelete: Cascade)
+  tipsId Int?
+}
+
+model CategoryTips {
+  id     Int    @id @default(autoincrement())
+  title  String
+  status String
+}
+
+//Menu part----------------------------------------------------------------------------//
+model EditableMenu {
+  id       Int               @id @default(autoincrement())
+  title    String
+  subtitle SubEditableMenu[]
+}
+
+model SubEditableMenu {
+  id             Int           @id @default(autoincrement())
+  title          String
+  order          Int
+  editableMenu   EditableMenu? @relation(fields: [editableMenuId], references: [id], onDelete: Cascade)
+  editableMenuId Int?
+}
+
+// Gestion des rubriques pour recettes----------------------------------------------------------------//
+model Topics {
+  id      String          @id @default(uuid())
+  title   String
+  order   Int
+  type    String
+  section TopicsSection[]
+}
+
+model TopicsSection {
+  id          String  @id @default(uuid())
+  idi         String
+  recipeId    Int
+  recipeOrder Int
+  Topics      Topics? @relation(fields: [topicsId], references: [id], onDelete: Cascade)
+  topicsId    String?
+}
+
+// Gestion des rubriques pour tips----------------------------------------------------------------//
+model TopicsTip {
+  id      String             @id @default(uuid())
+  title   String
+  order   Int
+  type    String
+  section TopicsTipSection[]
+}
+
+model TopicsTipSection {
+  id          String     @id @default(uuid())
+  idi         String
+  tipsId      Int
+  tipsOrder   Int
+  TopicsTip   TopicsTip? @relation(fields: [topicsTipId], references: [id])
+  topicsTipId String?
+}
+
+// footer----------------------------------------------------------------------------------//
+model Footer {
+  id             Int     @id @default(autoincrement())
+  yahalawa_terms String? @db.Text
+  tt_terms       String? @db.Text
+  about          String? @db.Text
+}

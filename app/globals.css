@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.green-btn {
+  background-color: #13ce66; 
+  border: 1px solid #13ce66; 
+  border-radius: 6px;
+  padding: 8px 20px;
+  color: #ffffff; 
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.green-btn:hover {
+  background-color: #ffffff;
+  color: #13ce66;
+}
+
+.blue-btn {
+  background-color: #007AFF; 
+  border: 1px solid #007AFF; 
+  border-radius: 6px;
+  padding: 8px 20px;
+  color: #ffffff; 
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.blue-btn:hover {
+  background-color: #ffffff;
+  color: #007AFF;
+}
+
+.red-btn {
+  background-color: #FE2C54; 
+  border: 1px solid #FE2C54; 
+  border-radius: 6px;
+  padding: 8px 20px;
+  color: #ffffff; 
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.red-btn:hover {
+  background-color: #ffffff;
+  color: #FE2C54;
+}
+
+.yahalawa-btn {
+  background: linear-gradient(95.84deg, #FE2C54 0%, #F338D0 132.7%);
+  color: #ffffff;
+  border: 1px solid #FE2C54;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.yahalawa-btn:hover {
+  background: #ffffff;
+  color: #FE2C54;
+}
+
+
+.green-badge {
+  background-color: #13ce66; 
+  padding: 4px 12px;
+  border-radius: 10px;
+}
+
+.gray-badge {
+  background-color: #cccccc; 
+  padding: 4px 12px;
+  border-radius: 10px;
+}
+
+.yellow-badge {
+  background-color: #ffc82c; 
+  padding: 4px 12px;
+  border-radius: 10px;
+}
+
+.red-badge {
+  background-color: #FE2C54; 
+  padding: 4px 12px;
+  border-radius: 10px;
+}
+
+.bleu-badge {
+  background-color: #007AFF; 
+  padding: 4px 12px;
+  border-radius: 10px;
+}
+
+.menu-item {
+  background: linear-gradient(95.84deg, #FE2C54 0%, #F338D0 132.7%);
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+
+.cardBorder{
+  border: 0.73px solid rgba(245, 245, 245, 1);
+  box-shadow: 0px 2px 6px 0px rgba(24, 49, 83, 0.17);
+}
+
+/* specifique style for recipe page */
+.bgDescCard {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 9%, rgba(24, 49, 83, 0.2) 30.5%, #183153 100%);
+}
+
+.categoryTitle {
+  color: rgba(102, 102, 102, 1);
+}
+
+.likeColor {
+  color: rgba(24, 49, 83, 0.43);
+}
+
+.ingTitle {
+  color: rgba(94, 93, 192, 0.8);
+}
+
+.bgNbServes {
+  background: linear-gradient(90deg, rgba(0, 122, 255, 0.05) 0%, rgba(0, 122, 255, 0.15) 100%);
+}
+
+.stepsTitleBorder {
+  background: linear-gradient(90deg, rgba(0, 122, 255, 0.33) 0%, rgba(254, 44, 84, 0.33) 100%);
+}
+
+.custom-scrollbar {
+  overflow-y: scroll; 
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 100%;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #dbd4d4;
+  border-radius: 20px;
+}
+
+.bookMark {
+  cursor: pointer;
+  stroke: #FFF;
+  transition-duration: 300ms;
+}
+
+.bookMarkCard {
+  cursor: pointer;
+  stroke: #183153;
+  transition-duration: 300ms;
+}
+.bookMarkSaved {
+  cursor: pointer;
+  stroke: #FE2C54;
+  transition-duration: 300ms;
+}
+
+.bookMark:hover, .bookMarkSaved:hover, .bookMarkCard:hover {
+  stroke: #007AFF;
+}
+
+
+
+.embla {
+  max-width: 100%;
+  margin: auto;
+  --slide-height: 19rem;
+  --slide-spacing: 1rem;
+  --slide-size: 100%;
+  --slide-spacing-sm: 2rem;
+  --slide-size-sm: 50%;
+  --slide-spacing-lg: 2rem;
+  --slide-size-lg: calc(100% / 3);
+}
+.embla__viewport {
+  overflow: hidden;
+}
+.embla__container {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+
+
+@media (min-width: 750px) {
+  .embla__container {
+    margin-left: calc(var(--slide-spacing-sm) * -1);
+  }
+}
+@media (min-width: 1200px) {
+  .embla__container {
+    margin-left: calc(var(--slide-spacing-lg) * -1);
+  }
+}
+.embla__slide {
+  min-width: 0;
+  flex: 0 0 var(--slide-size);
+  padding-left: var(--slide-spacing);
+}
+@media (min-width: 750px) {
+  .embla__slide {
+    flex: 0 0 var(--slide-size-sm);
+    padding-left: var(--slide-spacing-sm);
+  }
+}
+@media (min-width: 1200px) {
+  .embla__slide {
+    flex: 0 0 var(--slide-size-lg);
+    padding-left: var(--slide-spacing-lg);
+  }
+}
+
+}

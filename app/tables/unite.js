@@ -1,0 +1,26 @@
+export const unit = [
+    
+    { title: 'قطع' },
+    { title: 'أوراق' },
+    { title: 'فصوص' },
+    { title: 'ملليلتر' },
+    { title: 'صل' },
+    { title: 'ل' },
+    { title: 'دسل' },
+    { title: 'غرام' },
+    { title: 'كغ' },
+    { title: 'مغرفة صغيرة' },
+    { title: 'مغرفة كبيرة' },
+    { title: 'قطرات' },
+    { title: 'أوراق' },
+    { title: 'كوب' },
+    { title: 'رشة' },
+    { title: 'راس' },
+    { title: 'عرف' },
+    { title: 'حفنة' },
+    { title: 'ربطة' },
+    { title: 'كعبة' },
+    { title: 'كعبات' },
+    { title: 'ڨرن' },
+    { title: 'ڨرون' }
+  ];
