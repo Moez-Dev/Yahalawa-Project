@@ -1,7 +1,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import logo from '@/public/logo_tt.svg'
+import logo from '@/public/telecom.svg'
 import Navbar from "@/components/home/Navbar"
 import ApprovalBtn from "./_components/ApprovalBtn"
 import MobileNavbar from "@/components/home/MobileNavbar"

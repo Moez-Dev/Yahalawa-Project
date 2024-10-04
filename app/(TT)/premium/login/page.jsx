@@ -2,7 +2,7 @@ import Navbar from "@/components/home/Navbar"
 import RegisterForm from "./_components/RegisterForm"
 import { auth } from '@/auth'
 import Image from "next/image"
-import logo from '@/public/logo_tt.svg'
+import logo from '@/public/telecom.svg'
 import MobileNavbar from "@/components/home/MobileNavbar"
 
 const Register = async () => {

@@ -4,8 +4,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { useFormStatus } from "react-dom"
 import { useState } from "react"
 import { Smartphone } from "lucide-react"
-import { toast } from "sonner"
-import { forgotPwd } from "@/app/actions/auth"
+
 
 
 const ForgotPwd = ( ) => {

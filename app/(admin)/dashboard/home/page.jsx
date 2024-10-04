@@ -6,7 +6,7 @@ import ingredient from '@/public/dashboard/ingredient.svg'
 import category from '@/public/dashboard/category.svg'
 import tag from '@/public/dashboard/tags.svg'
 import logo from '@/public/logo.svg'
-import logo_TT from '@/public/logo_TT.svg'
+import telecom from '@/public/telecom.svg'
 import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { Bell } from "lucide-react"
@@ -43,9 +43,9 @@ const Page = async () => {
   ]
 
   const ttCards = [
-    { title: 'Recettes', number: totalTTRecipes, icon: logo_TT, width: 45 },
-    { title: 'Tips', number: totalTtTips, icon: logo_TT, width: 45 },
-    { title: 'Utilisateurs', number: totalTTUsers, icon: logo_TT, width: 45 },
+    { title: 'Recettes', number: totalTTRecipes, icon: telecom, width: 45 },
+    { title: 'Tips', number: totalTtTips, icon: telecom, width: 45 },
+    { title: 'Utilisateurs', number: totalTTUsers, icon: telecom, width: 45 },
   ]
 
   const freeCards = [
