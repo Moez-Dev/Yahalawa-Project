@@ -6,7 +6,7 @@ import { Popover, PopoverContent,PopoverTrigger } from "@/components/ui/popover"
 const DatePicker = ({ date, setDate, name, disbaled }) => {
   const adjustDateToMidday = (d) => {
     const newDate = new Date(d);
-    newDate.setHours(16, 9, 0, 0); 
+    newDate.setHours(1, 0, 0, 0); 
     return newDate;
   };
 

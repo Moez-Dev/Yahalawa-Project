@@ -475,7 +475,7 @@ export async function deleteStep(id) {
 
 
 //schedule post -----------------------------------------------------//
-cron.schedule('9 16 * * *', async () => {
+cron.schedule('* 1 * * *', async () => {
 
     try {
         const scheduledRecipe = await prisma.recipes.findFirst({

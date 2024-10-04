@@ -11,9 +11,7 @@ export async function POST(request) {
     });
   }
 
-  const apiKey = "TTY_Yahalawa_KEY";
-  const serviceId = "TTY_Yahalawa";
-  const apiUrl = "https://tta-basil.sup.gg";
+  
   const username = `216${phone_number}`;
   const timestamp = new Date().toISOString(); // Utiliser une date ISO pour le timestamp
   const uid = `f5d${new Date().getMinutes()}${new Date().getSeconds()}a-9${new Date().getDate()}e-11e7-abc4-cec${new Date().getSeconds()}8b6b${new Date().getHours()}d`;
@@ -22,11 +20,11 @@ export async function POST(request) {
     const headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'X-U-App-Key': apiKey,
-      'X-U-Service-Id': serviceId,
+      'X-U-App-Key': process.env.apiKey,
+      'X-U-Service-Id': process.env.serviceId,
     };
 
-    const url = `${apiUrl}/hydra/api/v2/account/credentials/remind?msisdn=${username}&reset=true`;
+    const url = `${process.env.apiUrl}/hydra/api/v2/account/credentials/remind?msisdn=${username}&reset=true`;
     const data = {
       msisdn: username,
       reset: false,

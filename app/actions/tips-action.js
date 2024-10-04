@@ -265,7 +265,7 @@ export async function deleteCategorySelected(id) {
 
 
 //schedule tips -----------------------------------------------------//
-cron.schedule('7 13 * * *', async () => {
+cron.schedule('* 1 * * *', async () => {
 
     try {
         const scheduledTips = await prisma.tips.findFirst({

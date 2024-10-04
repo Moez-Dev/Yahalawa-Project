@@ -12,21 +12,19 @@ export async function POST(request) {
       });
     }
 
-    const apiKey = "TTY_Yahalawa_KEY";
-    const serviceId = "TTY_Yahalawa";
-    const apiUrl = "https://tta-basil.sup.gg";
+
     const username = `216${phone_number}`;
 
     const auth = Buffer.from(`${username}:${password}`).toString('base64');
 
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'X-U-App-Key': apiKey,
-      'X-U-Service-Id': serviceId,
+      'X-U-App-Key': process.env.apiKey,
+      'X-U-Service-Id': process.env.serviceId,
       'Authorization': `Basic ${auth}`,
     };
 
-    const url = `${apiUrl}/hydra/api/v2/token?grant_type=client_credentials&client_id=98123456&channel=SMS&app_version=quizit-1.0&advertising_id=0001727811237`;
+    const url = `${process.env.apiUrl}/hydra/api/v2/token?grant_type=client_credentials&client_id=98123456&channel=SMS&app_version=quizit-1.0&advertising_id=0001727811237`;
 
     const response = await axios.post(url, null, { headers });
 
