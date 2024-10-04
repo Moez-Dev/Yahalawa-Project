@@ -78,7 +78,8 @@ export const GetTTUsers = async ({ query, page }) => {
       <table className="min-w-full divide-y divide-gray bg-white">
         <thead className="text-sm lg:text-base">
           <tr>
-            <th className="px-4 py-2 w-72 text-left">Number</th>
+            <th className="px-4 py-2 w-72 text-left">Numéro</th>
+            <th className="px-4 py-2 w-72 text-left">Approuvé</th>
             <th className="p-2 w-40 text-left">Date d'inscription</th>
             <th className="p-2 w-40 text-left">Dernière connexion</th>
           </tr>
@@ -89,6 +90,7 @@ export const GetTTUsers = async ({ query, page }) => {
             <tbody key={el.id} className="bg-white text-base divide-y divide-gray text-darkgray">
               <tr>
                 <td className="px-4 py-2 w-72">{el.name}</td>
+                <td className="px-4 py-2 w-72">Approuvé</td>
                 <td className="p-2 text-sm text-left">{formatDate(el.createdAt)}</td>
                 <td className="p-2 text-sm text-left">{el.lastLogin && formatDate(el.lastLogin)}</td>
               </tr>
