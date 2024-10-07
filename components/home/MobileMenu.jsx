@@ -110,7 +110,7 @@ const MobileMenu = ({ menu, session }) => {
                         :
                         (<li>
                             <form action={doLogout}>
-                                {session?.user?.role == "SUPER_ADMIN" || "ADMIN" &&
+                                {session?.user?.role == "SUPER_ADMIN" || "ADMIN" || "T_TELECOM" &&
                                     <div className="w-full flex items-center justify-end cursor-pointer hover:text-[#F33BD6] duration-300">
                                         <Link href="/compte">حسابي</Link>
                                         <User className="size-4" />

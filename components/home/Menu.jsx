@@ -68,7 +68,7 @@ const Menu = ({ menu, session }) => {
                                 <DropdownMenuContent className="p-3 text-center">
 
                                     <form action={doLogout}>
-                                        {session?.user?.role == "SUPER_ADMIN" || "ADMIN" &&
+                                        {session?.user?.role == "SUPER_ADMIN" || "ADMIN" || "T_TELECOM" &&
                                             <div className="w-full flex items-center justify-end cursor-pointer hover:text-blue duration-300">
                                                 <Link href="/compte">حسابي</Link>
                                                 <User className="size-4" />
