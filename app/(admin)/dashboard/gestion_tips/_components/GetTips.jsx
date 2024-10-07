@@ -82,6 +82,9 @@ export const GetTips = async ({ query, page }) => {
   };
 
 
+  console.log('tips', tips)
+
+
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray bg-white">

@@ -11,6 +11,7 @@ const nextConfig = {
         ]
       },
       images: {
+        domains: ['localhost', '176.31.163.243'],
         remotePatterns: [
           {
             protocol: 'http',
