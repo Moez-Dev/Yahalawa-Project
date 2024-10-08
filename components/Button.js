@@ -5,7 +5,7 @@ const Button = ({addUnit}) => {
     <div>
         <button  onClick={async () => {
       await addUnit()
-    }}>ADD</button>
+    }}>ADD table</button>
     </div>
   )
 }
