@@ -73,7 +73,7 @@ const Menu = ({ menu, session }) => {
                                                 <Link href="/compte">حسابي</Link>
                                                 <User className="size-4" />
                                             </div>}
-                                        <button type="submit" className="mt-3 w-full flex items-center justify-end space-x-2 cursor-pointer hover:text-blue duration-300">
+                                        <button type="submit" className="mt-2 w-full flex items-center justify-end space-x-2 cursor-pointer hover:text-blue duration-300">
                                             <p>خروج</p>
                                             <LogOut className="size-4" />
                                         </button>
