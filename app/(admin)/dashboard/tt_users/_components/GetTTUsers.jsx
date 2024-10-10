@@ -58,7 +58,6 @@ export const GetTTUsers = async ({ query, page }) => {
     orderBy,
   });
 
-  console.log(users)
 
   //Date format
   const formatDate = (date) => {
