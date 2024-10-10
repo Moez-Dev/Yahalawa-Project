@@ -137,8 +137,16 @@ export async function editTips(formData) {
     let sheduleDate = date ? new Date(date) : null;
     
 
-    if(!IdI || !title || !description || !type || !status || category.length === 0) {
-        return { error: "Veuillez remplir tous les champs requis." }
+
+    if (status === 'brouillon') {
+        if (!IdI) {
+            return { error: "Veuillez remplir IDI" };
+        }
+    }
+    else {
+        if(!IdI || !title || !description || !type || !status || category.length === 0) {
+            return { error: "Veuillez remplir tous les champs requis" }
+        }
     }
 
 

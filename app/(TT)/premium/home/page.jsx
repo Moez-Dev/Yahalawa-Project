@@ -15,10 +15,13 @@ export default async function Home() {
   const session = await auth()
   const notPremium =  session?.user?.role !== "T_TELECOM"
   const notAdmin =  session?.user?.role !==  ("ADMIN"  && "SUPER_ADMIN")
+  const approved = session?.user?.approuveTerms
 
   if(notPremium && notAdmin) {
     redirect('/premium/login')
   }
+
+
 
   //get topics recipe
   const getTopics = await prisma.topics.findMany({

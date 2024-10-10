@@ -24,6 +24,21 @@ export async function LogoutTT() {
   await signOut({ redirectTo: "/premium/login" });
 }
 
+
+//approver TT user-----------------------------------------------------//
+export async function approvedUser(userId) {
+  try {
+     await prisma.user.update({
+      where: { id : userId },
+      data: { approuveTerms: true }
+    })
+
+    return { message : 'Approved'}
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 //register with credentials-------------------------------------------//
 export async function register(formData) {
 
@@ -131,7 +146,7 @@ export async function login(formData, type) {
         redirect: false
       });
     } else if (type === 'phone') {
-      await signIn("credentials", {
+      const user = await signIn("credentials", {
         phone_number: formData.get("phone_number"),
         password: formData.get("password"),
         redirect: false
@@ -142,9 +157,6 @@ export async function login(formData, type) {
     return { error: error.message || "An unexpected error occurred." };
   }
 }
-
-
-
 
 
 //forgot pasword ---------------------------------------------------//

@@ -13,7 +13,7 @@ const Page = async () => {
 
 
   return (
-    <main className="flex min-h-screen flex-col px-3 md:px-8 lg:px-32 py-8">
+    <main className="flex min-h-screen flex-col px-3 md:px-8 lg:px-32 py-8 mt-8 lg:mt-0">
 
       <header className="w-full mb-8">
         <Navbar />

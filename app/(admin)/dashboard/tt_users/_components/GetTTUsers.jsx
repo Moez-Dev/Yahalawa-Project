@@ -58,6 +58,7 @@ export const GetTTUsers = async ({ query, page }) => {
     orderBy,
   });
 
+  console.log(users)
 
   //Date format
   const formatDate = (date) => {
@@ -90,7 +91,7 @@ export const GetTTUsers = async ({ query, page }) => {
             <tbody key={el.id} className="bg-white text-base divide-y divide-gray text-darkgray">
               <tr>
                 <td className="px-4 py-2 w-72">{el.name}</td>
-                <td className="px-4 py-2 w-72">Approuvé</td>
+                <td className="px-4 py-2 w-72">{el.approuveTerms ? 'Approuvé' : 'Non approuvé'}</td>
                 <td className="p-2 text-sm text-left">{formatDate(el.createdAt)}</td>
                 <td className="p-2 text-sm text-left">{el.lastLogin && formatDate(el.lastLogin)}</td>
               </tr>

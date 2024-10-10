@@ -5,10 +5,23 @@ import logo from '@/public/telecom.svg'
 import Navbar from "@/components/home/Navbar"
 import ApprovalBtn from "./_components/ApprovalBtn"
 import MobileNavbar from "@/components/home/MobileNavbar"
+import { auth } from '@/auth'
+import { redirect } from "next/navigation";
 
 
 
-const Approval = () => {
+const Approval = async () => {
+
+  //get session
+  const session = await auth();
+
+  const userId = session?.user?.id
+  const approved = session?.user?.approuveTerms
+
+  if(approved === true) {
+    redirect('/premium/home')
+  }
+
 
     return (
         <main className="flex min-h-screen flex-col items-center px-3 md:px-8 lg:px-32 py-8">
@@ -34,10 +47,10 @@ const Approval = () => {
 
                 <div className="text-center">
                     <p className="text-darkblue mb-2">لقد قرأت و وافقت على</p>
-                    <Link href="" className="text-blue">الشروط العامة للبيع والإستخدام الخدمات <br/>Yahalawa by TT</Link>
+                    <Link href="/terms_of_TT" className="hover:text-blue duration-300">الشروط العامة للبيع والإستخدام الخدمات <br/>Yahalawa by TT</Link>
                 </div>
 
-                <ApprovalBtn />
+                <ApprovalBtn userId={userId} />
 
         </main>
     )

@@ -1,10 +1,9 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Smartphone, Eye, EyeOff } from "lucide-react"
 import { login } from "@/app/actions/auth"
 import { toast } from "sonner"
-import { useFormStatus } from "react-dom"
 import { useRouter } from "next/navigation"
 import ForgotPwd from "./ForgotPwd"
 
@@ -12,21 +11,22 @@ import ForgotPwd from "./ForgotPwd"
 
 const RegisterForm = () => {
 
-    const { pending } = useFormStatus()
-
     const router = useRouter()
 
     const [showPassword, setShowPassword] = useState(false)
 
+    const [loading, setLoading] = useState(false)
+
 
     const handleAction = async (formData) => {
+
+        setLoading(true)
 
         let phone_number = formData.get('phone_number')
         let pwd = formData.get('password')
         let address = formData.get('address')
 
         if (address) { return }
-
 
         if (!pwd) {
             return toast.error(' كلمة المرور لا تلبي المتطلبات')
@@ -42,13 +42,14 @@ const RegisterForm = () => {
             if (result?.error) {
                 return toast.error("بيانات اعتماد غير صالحة")
             } else {
-                router.push('/premium/home')
+                router.push('/premium/approval');
             }
         } catch (error) {
             console.log(error)
         }
     };
-    
+
+
 
 
     return (
@@ -59,7 +60,7 @@ const RegisterForm = () => {
             <form action={handleAction} dir="rtl">
 
                 <div className="relative">
-                    <input 
+                    <input
                         type="number"
                         name="phone_number"
                         placeholder="رقم الجوال إتصالات تونس"
@@ -69,7 +70,7 @@ const RegisterForm = () => {
                 </div>
 
                 <div className="relative mt-5">
-                    <input 
+                    <input
                         type={showPassword ? 'text' : 'password'}
                         name="password"
                         placeholder="كلمة المرور"
@@ -81,12 +82,12 @@ const RegisterForm = () => {
                 </div>
 
                 <div className="text-center mt-8">
-                    <button type="submit" disabled={pending} className="py-3 w-full yahalawa-btn">
-                        {pending
+                    <button type="submit" disabled={loading} className="py-3 w-full yahalawa-btn">
+                        {loading
                             ?
-                            <div className="flex items-center space-x-1">
-                                <svg className="animate-spin" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><g fill="white"><path fill-rule="evenodd" d="M12 19a7 7 0 1 0 0-14a7 7 0 0 0 0 14m0 3c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10" clip-rule="evenodd" opacity="0.2" /><path d="M2 12C2 6.477 6.477 2 12 2v3a7 7 0 0 0-7 7z" /></g></svg>
+                            <div className="flex items-center justify-center space-x-1">
                                 <span>تسجيل</span>
+                                <svg className="animate-spin" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><g fill="white"><path fillRule="evenodd" d="M12 19a7 7 0 1 0 0-14a7 7 0 0 0 0 14m0 3c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10" clipRule="evenodd" opacity="0.2" /><path d="M2 12C2 6.477 6.477 2 12 2v3a7 7 0 0 0-7 7z" /></g></svg>
                             </div>
                             :
                             'تسجيل'
